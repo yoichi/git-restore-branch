@@ -20,6 +20,10 @@ git restore-branch branch-name-in-reflog
 
 copy git-restore-branch somewhere in your PATH
 
+# Limitations
+
+it will not work properly if the previous reflog of the reflog that left the branch has been deleted
+
 # License
 
 MIT
