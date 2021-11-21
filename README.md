@@ -4,13 +4,16 @@ git subcommand to restore local branch by using reflog
 
 # Usage
 
-show list of candidates:
+To show list of candidates:
 
 ```
 git restore-branch
 ```
 
-restore branch:
+The format of each line is "branch-name = commit-hash".
+
+
+To restore branch:
 
 ```
 git restore-branch branch-name-in-reflog
@@ -18,11 +21,11 @@ git restore-branch branch-name-in-reflog
 
 # Installation
 
-copy git-restore-branch somewhere in your PATH
+Copy git-restore-branch somewhere in your PATH.
 
 # Limitations
 
-it will not work properly if the previous reflog of the reflog that left the branch has been deleted
+It will not work properly if the previous reflog of the reflog that left the branch has been deleted.
 
 # License
 
