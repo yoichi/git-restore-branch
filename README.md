@@ -4,7 +4,7 @@ git subcommand to restore local branch by using reflog
 
 # Usage
 
-To show list of candidates:
+## Show list of candidates
 
 ```
 git restore-branch
@@ -13,10 +13,10 @@ git restore-branch
 The format of each line is "branch-name = commit-hash".
 
 
-To restore branch:
+## Restore branch
 
 ```
-git restore-branch branch-name-in-reflog
+git restore-branch branch-name
 ```
 
 # Installation
