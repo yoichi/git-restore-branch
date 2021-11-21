@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# git restore-branch [branch-name-in-reflog]
 readarray REFLOG < <(git reflog --format="%H %gs" HEAD)
 COUNT=${#REFLOG[@]}
 declare -A REFS
