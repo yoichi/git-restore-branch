@@ -2,7 +2,7 @@
 readarray LOG < <(git reflog --format="%H %gs" HEAD)
 GIT_DIR=$(git rev-parse --git-dir)
 declare -A REFS
-for i in $(seq ${#LOG[@]}); do
+for i in $(seq 0 $((${#LOG[@]}-1))); do
   if [[ "${LOG[${i}]}" =~ ^[0-9a-f]+\ checkout:\ moving\ from\ (.+)\ to ]]; then
     NAME=${BASH_REMATCH[1]}
     if [ -z "${REFS[${NAME}]}" ]; then
