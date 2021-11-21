@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# git restore-branch [branch-name-in-reflog]
+readarray REFLOG < <(git reflog --format="%H %gs" HEAD)
+COUNT=${#REFLOG[@]}
+declare -A REFS
+for i in $(seq ${COUNT}); do
+  NAME=$(echo ${REFLOG[${i}]} | sed -n 's/[0-9a-f]* checkout: moving from \(.*\) to .*/\1/p')
+  if [ -n "${NAME}" ] && [ -z "${REFS[${NAME}]}" ]; then
+    git rev-parse ${NAME} -- > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+      HASH=$(echo ${REFLOG[$((${i}+1))]} | awk '{ print $1 }') 
+      if [ -n "${HASH}" ]; then
+        REFS[${NAME}]=${HASH}
+      fi
+    fi
+  fi
+done
+if [ $# -eq 0 ]; then
+  for NAME in "${!REFS[@]}"; do
+    echo "${NAME} = ${REFS[${NAME}]}"
+  done
+else
+  NAME=$1
+  if [ -z "${REFS[${NAME}]}" ]; then
+    echo "error: ${NAME} not found"
+    exit 1
+  fi
+  git branch "${NAME}" "${REFS[${NAME}]}"
+  echo "restored: ${REFS[${NAME}]} -> ${NAME}"
+fi
