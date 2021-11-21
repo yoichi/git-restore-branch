@@ -1,6 +1,7 @@
 # git-restore-branch
 
-git subcommand to restore local branch by using reflog
+A git subcommand to restore deleted local branch by using reflog.
+It can restore branches that were checked out locally in the past.
 
 # Usage
 
@@ -25,7 +26,8 @@ Copy git-restore-branch somewhere in your PATH.
 
 # Limitations
 
-It will not work properly if the previous reflog of the reflog that left the branch has been deleted.
+* Branches that have never been checked out locally cannot be restored. [git-fsck](https://git-scm.com/docs/git-fsck) may help.
+* It will not work properly if the previous reflog of the reflog that left the branch has been deleted.
 
 # License
 
