@@ -26,7 +26,7 @@ Copy git-restore-branch somewhere in your PATH.
 
 # Limitations
 
-* Branches that have never been checked out locally cannot be restored. [git-fsck](https://git-scm.com/docs/git-fsck) may help.
+* Branches that have never been checked out locally cannot be restored. [git-fsck](https://git-scm.com/docs/git-fsck) or [git-resurrect](https://github.com/git/git/blob/master/contrib/git-resurrect.sh) may help.
 * It will not work properly if the previous reflog of the reflog that left the branch has been deleted.
 
 # License
