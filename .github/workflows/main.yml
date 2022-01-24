@@ -15,7 +15,7 @@ jobs:
         uses: reviewdog/action-shellcheck@v1.12.0
         with:
           check_all_files_with_shebangs: "true"
-      - run: go install github.com/yusukebe/t/cmd/t
+      - run: go get github.com/yusukebe/t/cmd/t
       - run: |
          mkdir testrepo
          cd testrepo
