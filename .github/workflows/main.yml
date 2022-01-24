@@ -16,3 +16,13 @@ jobs:
         uses: reviewdog/action-shellcheck@v1.12.0
         with:
           check_all_files_with_shebangs: "true"
+      - run: go install github.com/yusukebe/t/cmd/t@latest
+      - run: |
+         mkdir testrepo
+         cd testrepo
+         git init
+         git commit --allow-empty -m "init"
+         git checkout -b testbranch
+         git checkout -
+         git branch -d testbranch
+         t "$(../git-restore-branch)" "testbranch = $(git rev-parse HEAD)"
