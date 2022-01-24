@@ -17,6 +17,9 @@ jobs:
           check_all_files_with_shebangs: "true"
       - run: go get github.com/yusukebe/t/cmd/t
       - run: |
+         git config --global user.email "foo@example.com"
+         git config --global user.name "Foo Bar"
+      - run: |
          mkdir testrepo
          cd testrepo
          git init
