@@ -16,7 +16,7 @@ jobs:
         with:
           check_all_files_with_shebangs: "true"
       - uses: actions/setup-go@v2
-      - run: go install github.com/yusukebe/t/cmd/t@latest
+      - run: go get github.com/yusukebe/t/cmd/t
       - run: |
          git config --global user.email "foo@example.com"
          git config --global user.name "Foo Bar"
@@ -28,4 +28,4 @@ jobs:
          git checkout -b testbranch
          git checkout -
          git branch -d testbranch
-         t "$(../git-restore-branch)" "testbranch = $(git rev-parse HEAD)"
+         ${GOPATH}/bin/t "$(../git-restore-branch)" "testbranch = $(git rev-parse HEAD)"
