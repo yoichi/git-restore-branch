@@ -28,4 +28,5 @@ jobs:
          git checkout -b testbranch
          git checkout -
          git branch -d testbranch
-         ${{ env.GOPATH }}/bin/t "$(../git-restore-branch)" "testbranch = $(git rev-parse HEAD)"
+         PATH=${PATH}:$(go env GOPATH)/bin
+         t "$(../git-restore-branch)" "testbranch = $(git rev-parse HEAD)"
