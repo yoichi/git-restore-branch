@@ -15,7 +15,8 @@ jobs:
         uses: reviewdog/action-shellcheck@v1.12.0
         with:
           check_all_files_with_shebangs: "true"
-      - run: go get github.com/yusukebe/t/cmd/t
+      - uses: actions/setup-go@v2
+      - run: go install github.com/yusukebe/t/cmd/t@latest
       - run: |
          git config --global user.email "foo@example.com"
          git config --global user.name "Foo Bar"
