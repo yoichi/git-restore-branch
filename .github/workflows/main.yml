@@ -30,3 +30,6 @@ jobs:
          git branch -d testbranch
          PATH=${PATH}:$(go env GOPATH)/bin
          t "$(../git-restore-branch)" "testbranch = $(git rev-parse HEAD)"
+         ! ../git-restore-branch nonexistent
+         ../git-restore-branch testbranch
+         t "$(git rev-parse testbranch)" "$(git rev-parse HEAD)"
