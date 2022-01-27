@@ -20,7 +20,8 @@ jobs:
       - run: |
          git config --global user.email "foo@example.com"
          git config --global user.name "Foo Bar"
-      - run: |
+      - name: Run tests
+        run: |
          mkdir testrepo
          cd testrepo
          git init
