@@ -15,9 +15,8 @@ jobs:
         uses: reviewdog/action-shellcheck@v1.12.0
         with:
           check_all_files_with_shebangs: "true"
-      - uses: actions/setup-go@v2
-      - run: go get github.com/yusukebe/t/cmd/t
-      - run: |
+      - name: git config
+        run: |
          git config --global user.email "foo@example.com"
          git config --global user.name "Foo Bar"
       - name: Run tests
@@ -30,7 +29,7 @@ jobs:
          git checkout -
          git branch -d testbranch
          PATH=${PATH}:$(go env GOPATH)/bin
-         t "$(../git-restore-branch)" "testbranch = $(git rev-parse HEAD)"
+         [ "$(../git-restore-branch)" == "testbranch = $(git rev-parse HEAD)" ]
          ! ../git-restore-branch nonexistent
          ../git-restore-branch testbranch
-         t "$(git rev-parse testbranch)" "$(git rev-parse HEAD)"
+         [ "$(git rev-parse testbranch)" == "$(git rev-parse HEAD)" ]
