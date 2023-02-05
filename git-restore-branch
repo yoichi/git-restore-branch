@@ -27,6 +27,9 @@ else
     echo "error: ${NAME} not found"
     exit 1
   fi
-  git branch "${NAME}" "${REFS[${NAME}]}"
-  echo "restored: ${REFS[${NAME}]} -> ${NAME}"
+  if git branch "${NAME}" "${REFS[${NAME}]}"; then
+    echo "restored: ${REFS[${NAME}]} -> ${NAME}"
+  else
+    exit 1
+  fi
 fi
